@@ -17,6 +17,49 @@ class Node{
 
 };
 
+void push(Node** head_ref,int new_data){
+    Node* new_node = new Node();
+    
+    new_node->data = new_data;
+    new_node->next = *head_ref;
+
+    *head_ref = new_node;
+    
+}
+
+void insert_after(Node* prev_node,int new_data){
+    Node* new_node = new Node();
+
+    
+    new_node->data = new_data;
+    new_node->next = prev_node->next;
+
+    prev_node->next = new_node;
+
+
+
+    
+}
+
+
+void append(Node** head_ref,int new_data){
+    Node* new_node = new Node();
+
+    Node* last = *head_ref;
+    new_node->data = new_data; 
+    new_node->next = NULL;
+
+    while(last->next!=NULL){
+        last = last->next;
+    }
+    
+    last->next = new_node;
+    return;
+   
+}
+
+    
+
 // Print Functon
 void print_ll(Node *node){
     while(node!=NULL){
@@ -30,46 +73,19 @@ void print_ll(Node *node){
 
 int main(){
     //Declaration of three elements
-    Node* head = new Node();
-    Node* first = new Node();
-    Node* second = new Node();
+    Node *head = NULL;
 
-    //adding data to these elements
-    head->data = 1;
-    first->data = 3;
-    second->data = 4;
+    push(&head,2);
+    push(&head,1);
 
-    //linking the lists
-    head->next = first;
-    first->next = second;
-    second->next = NULL;
+    append(&head,3);
+    append(&head,4);
+
+    insert_after(head->next,8);
 
 
-    //insertion at Front of linked list
-    Node* new_node_begin = new Node();
-    new_node_begin->data = 0;
-    new_node_begin->next = head;
 
-    //insertion in bewtween node head and first
-    Node* new_node_middle = new Node();
-    new_node_middle->data = 2;
-    new_node_middle->next = first;
+    print_ll(head);
 
-    head->next = new_node_middle;
-
-    
-    //insertion at End of linked list after node Third
-    Node* new_node_end = new Node();
-    new_node_end->data = 5;
-
-    second->next = new_node_end;
-
-    
-
-
-    
-
-    //calling print function
-    print_ll(new_node_begin);
     cout<<endl;
 }

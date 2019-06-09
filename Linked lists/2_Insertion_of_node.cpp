@@ -18,6 +18,10 @@ class Node{
 };
 
 void push(Node** head_ref,int new_data){
+    /*
+            Inserting new node in front
+    */
+
     Node* new_node = new Node();
     
     new_node->data = new_data;
@@ -28,6 +32,14 @@ void push(Node** head_ref,int new_data){
 }
 
 void insert_after(Node* prev_node,int new_data){
+    /*
+            Inserting new node in after prev_node
+    */
+    
+    if(prev_node == NULL){
+        return;
+    }
+
     Node* new_node = new Node();
 
     
@@ -43,6 +55,14 @@ void insert_after(Node* prev_node,int new_data){
 
 
 void append(Node** head_ref,int new_data){
+    /*
+            Inserting new node at last
+    */
+
+    if(*head_ref == NULL){
+        return;
+    }
+
     Node* new_node = new Node();
 
     Node* last = *head_ref;
@@ -82,6 +102,9 @@ int main(){
     append(&head,4);
 
     insert_after(head->next,8);
+    insert_after(head->next,7);
+
+
 
 
 
